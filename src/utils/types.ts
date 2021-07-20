@@ -18,6 +18,11 @@ export interface SourceMapOptions {
   hidden: boolean;
 }
 
+export interface AdditionalEntryPoint {
+  entryName: string;
+  entryPath: string;
+}
+
 export interface BuildBuilderOptions {
   main: string;
   outputPath: string;
@@ -44,4 +49,6 @@ export interface BuildBuilderOptions {
   root?: string;
   sourceRoot?: Path;
   projectRoot?: string; 
+
+  additionalEntryPoints?: AdditionalEntryPoint[];
 }

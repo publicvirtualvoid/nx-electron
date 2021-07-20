@@ -3,7 +3,7 @@ import { workspaces, normalize } from '@angular-devkit/core';
 import { NxScopedHost } from '@nrwl/devkit/ngcli-adapter';
 
 export async function getSourceRoot(context: BuilderContext): Promise<{ sourceRoot: string; projectRoot: string }> {
-  const workspaceHost = workspaces.createWorkspaceHost(new NxScopedHost(normalize(context.workspaceRoot)));
+  const workspaceHost = workspaces.createWorkspaceHost(new NxScopedHost(normalize(context.workspaceRoot)) as any);
   const { workspace } = await workspaces.readWorkspace('', workspaceHost);
   const { project } = context.target;
   const { sourceRoot, root } = workspace.projects.get(project);

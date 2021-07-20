@@ -7,6 +7,22 @@
       "type": "string",
       "description": "The name of the main entry-point file."
     },
+    "additionalEntryPoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entryName": {
+            "type": "string",
+            "description": "Name of the additional entry file"
+          },
+          "entryPath": {
+            "type": "string",
+            "description": "Path to the additional entry file"
+          }
+        }
+      }
+    },
     "tsConfig": {
       "type": "string",
       "description": "The name of the Typescript configuration file."

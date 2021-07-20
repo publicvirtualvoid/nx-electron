@@ -20,10 +20,20 @@ export function getBaseWebpackPartial(options: BuildBuilderOptions): Configurati
     compilerOptions.target !== ts.ScriptTarget.ES5;
   const mainFields = [...(supportsEs2015 ? ['es2015'] : []), 'module', 'main'];
   const extensions = ['.ts', '.tsx', '.mjs', '.js', '.jsx'];
+  const additionalEntryPoints =
+    options.additionalEntryPoints?.reduce(
+      (obj, current) => ({
+        ...obj,
+        [current.entryName]: current.entryPath,
+      }),
+      {} as { [entryName: string]: string }
+    ) ?? {};
+  console.log(JSON.stringify(additionalEntryPoints));
   const webpackConfig: Configuration = {
     entry: {
       ...options.webpackEntries,
-      main: options.main
+      main: options.main,
+      ...additionalEntryPoints,
     },
     devtool: options.sourceMap ? 'source-map' : false,
     mode: options.optimization ? 'production' : 'development',
